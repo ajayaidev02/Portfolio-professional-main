@@ -1,0 +1,84 @@
+:root{
+  --bg:#0f1724; --card:#0b1220; --muted:#9aa4b2; --accent:#6ee7b7; --glass: rgba(255,255,255,0.03);
+  --container:1100px; --radius:10px; --gap:20px; --fg:#e6eef6;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#071028 0%, #071a2a 100%);color:var(--fg);-webkit-font-smoothing:antialiased}
+.container{max-width:var(--container);margin:0 auto;padding:24px}
+.site-header{backdrop-filter:blur(6px);position:sticky;top:0;background:transparent;padding:12px 0;z-index:20}
+.header-row{display:flex;align-items:center;justify-content:space-between}
+.brand h1{margin:0;font-size:26px;letter-spacing:1px}
+.brand .role{margin:0;color:var(--muted);font-size:13px}
+.nav-list{display:flex;gap:18px;list-style:none;margin:0;padding:0}
+.nav-list a{color:var(--fg);text-decoration:none;font-weight:600}
+.nav-toggle{display:none;background:transparent;border:0;color:var(--fg);font-size:20px}
+
+.hero{display:grid;grid-template-columns:1fr 360px;gap:32px;align-items:center;padding:36px 0}
+.hero-left h2{font-size:30px;margin:0 0 12px}
+.lead{color:var(--muted);line-height:1.5}
+.hero-image{width:100%;max-width:320px}
+.btn{display:inline-block;padding:10px 14px;border-radius:8px;background:var(--accent);color:#022; text-decoration:none;font-weight:700;margin-right:8px}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--fg)}
+
+.about, .skills, .projects, .contact{background:var(--glass);margin:18px 0;padding:18px;border-radius:12px}
+.section-content{max-width:900px;margin:0 auto;text-align:left}
+.about h3,.skills h3,.projects h3,.contact h3{margin-top:0;margin-bottom:10px}
+.section-content p{color:var(--muted);line-height:1.6}
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:12px}
+.skill-card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:14px;border-radius:10px;display:flex;flex-direction:column;align-items:center;text-align:center;min-height:110px}
+.skill-badge{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,#2dd4bf,#60a5fa);display:flex;align-items:center;justify-content:center;font-weight:800;color:#022;font-size:18px;margin-bottom:10px;box-shadow:0 6px 18px rgba(2,6,23,0.6)}
+.skill-card{transition:transform .28s cubic-bezier(.22,.9,.3,1),box-shadow .28s}
+.skill-card:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 18px 40px rgba(2,6,23,0.5)}
+
+.project-list{display:grid;gap:12px}
+.project{padding:12px;border-radius:8px;background:rgba(255,255,255,0.02)}
+.project{transition:transform .28s cubic-bezier(.22,.9,.3,1),box-shadow .28s,background .28s}
+.project:hover{transform:translateY(-10px);box-shadow:0 22px 50px rgba(2,6,23,0.55);background:linear-gradient(180deg,rgba(255,255,255,0.025),rgba(255,255,255,0.01))}
+.project h4{margin:0 0 6px}
+.tech{color:var(--muted);font-size:13px}
+
+.btn{transition:transform .18s ease,box-shadow .18s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(46,229,183,0.12)}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;}
+  .header-row{align-items:flex-start}
+  .nav-list{position:fixed;left:12px;right:12px;top:64px;background:var(--card);padding:18px;border-radius:12px;flex-direction:column;display:none;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+  .nav-list.show{display:flex}
+  .nav-toggle{display:block}
+  .skills-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:480px){
+  .skills-grid{grid-template-columns:repeat(1,1fr)}
+  .container{padding:16px}
+  .brand h1{font-size:20px}
+}
+
+/* Footer styles */
+.site-footer{margin-top:28px;padding:18px 0;color:var(--muted)}
+.footer-grid{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:12px}
+.footer-grid .muted{margin:6px 0;color:var(--muted);font-size:14px}
+.footer-grid .socials a{margin-left:8px;display:inline-block;color:var(--fg);text-decoration:none;padding:8px 10px;border-radius:8px;background:rgba(255,255,255,0.02)}
+.footer-grid .socials a.social-link{font-weight:700}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.03);padding-top:12px;margin-top:12px;color:var(--muted);font-size:13px}
+
+@media (max-width:700px){
+  .footer-grid{grid-template-columns:1fr;gap:10px;text-align:left}
+  .footer-grid .foot-links{display:flex;gap:8px}
+}
+
+/* hero visual blob and code-card */
+.hero-visual{position:relative;width:100%;height:320px;display:flex;align-items:center;justify-content:center}
+.hero-visual .blob{width:260px;height:260px;border-radius:40% 60% 40% 60%/60% 40% 60% 40%;background:linear-gradient(135deg,#60a5fa,#2dd4bf);filter:blur(6px);opacity:0.95}
+.hero-visual .code-card{position:absolute;padding:18px 22px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));box-shadow:0 10px 40px rgba(2,6,23,0.6);font-weight:700}
+
+/* make sure sections align well on small screens */
+@media (max-width:900px){
+  .section-content{padding:8px}
+  .hero-visual{height:220px}
+}
+
+@media (max-width:900px){
+  .hero-visual{height:220px}
+  .hero-visual .blob{width:200px;height:200px}
+}
