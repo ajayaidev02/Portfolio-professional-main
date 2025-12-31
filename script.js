@@ -95,6 +95,22 @@ if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
       }
     });
   });
+
+  // Animate About cards on scroll with staggered timing
+  gsap.utils.toArray('.about-card').forEach((card, index) => {
+    const delay = parseFloat(card.getAttribute('data-delay')) || index;
+    gsap.from(card, {
+      opacity: 0,
+      y: 30,
+      duration: 0.7,
+      delay: delay * 0.15,
+      scrollTrigger: {
+        trigger: card,
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+      }
+    });
+  });
 }
 
 // ============================================
