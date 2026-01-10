@@ -19,6 +19,7 @@
         initBackToTop();
         initSmoothScroll();
         initNavbarScroll();
+        initResumeViewer();
     });
 
     // ============================================
@@ -372,6 +373,64 @@
                 behavior: 'smooth'
             });
         });
+    }
+
+    // ============================================
+    // RESUME PDF VIEWER
+    // ============================================
+    
+    function initResumeViewer() {
+        // Track resume views
+        const resumeSection = document.getElementById('resume');
+        if (resumeSection && 'IntersectionObserver' in window) {
+            let viewTracked = false;
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !viewTracked) {
+                        viewTracked = true;
+                        console.log('Resume section viewed');
+                        // Track with your analytics here
+                        // Example: gtag('event', 'view_resume');
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            observer.observe(resumeSection);
+        }
+        
+        // Track View Resume button clicks
+        const viewButtons = document.querySelectorAll('.btn-view-resume');
+        viewButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                console.log('View Resume clicked');
+                // Track with your analytics here
+                // Example: gtag('event', 'view_resume_click', { 'event_category': 'engagement' });
+            });
+        });
+        
+        // Track Download Resume button clicks
+        const downloadButtons = document.querySelectorAll('.btn-download-resume, a[download][href*="AJAY S.pdf"]');
+        downloadButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                console.log('Resume download initiated');
+                // Track with your analytics here
+                // Example: gtag('event', 'download_resume', { 'event_category': 'engagement' });
+            });
+        });
+        
+        // Check if PDF file exists
+        fetch('asset/resume/AJAY S.pdf', { method: 'HEAD' })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Resume PDF file found and accessible');
+                } else {
+                    console.error('Resume PDF file not found (404)');
+                }
+            })
+            .catch(error => {
+                console.warn('Note: PDF file check failed. This is normal if running locally without a server.');
+            });
     }
 
     // ============================================
